@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <link rel="icon" href="gambar/smk-removebg-preview.png" type="image/x-icon">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rumah Komputer - SMK Al Amien</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo-glow"></div>
+        <h1>Rumah <span>Komputer</span></h1>
+      </div>
+      <nav class="search-cart">
+        <input id="searchInput" type="search" placeholder="Cari produk... (cth: Ryzen, RTX)" />
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="controls">
+      <div class="categories" id="categories"></div>
+      <div class="sort">
+        <label for="sortSelect">Urutkan:</label>
+        <select id="sortSelect">
+          <option value="default">Default</option>
+          <option value="price-asc">Harga: murah → mahal</option>
+          <option value="price-desc">Harga: mahal → murah</option>
+          <option value="name-asc">Nama A → Z</option>
+        </select>
+      </div>
+    </section>
+
+    <section id="productGrid" class="product-grid" aria-live="polite"></section>
+  </main>
+
+  <!-- Modal spesifikasi -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <button id="modalClose" class="modal-close" aria-label="Tutup">&times;</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+<!-- Chat widget: floating + draggable -->
+<div id="chatWidget" class="chat-widget" aria-live="polite">
+
+  <!-- Toggle chat (draggable icon) -->
+  <button id="chatToggle"
+          class="chat-toggle draggable"
+          aria-label="Buka chat"
+          aria-expanded="false"
+          type="button">
+    💬
+  </button>
+
+  <!-- Chat box -->
+  <div id="chatBox"
+       class="chat-box"
+       aria-hidden="true"
+       role="dialog"
+       aria-modal="false"
+       aria-label="Chat konsultasi">
+
+    <div class="chat-header">
+      <div>
+        <strong>Chat Konsultasi</strong>
+        <div class="small-muted">Bantuan cepat &amp; hubungi market</div>
+      </div>
+      <button id="chatClose" class="chat-close">&times;</button>
+    </div>
+
+    <div id="chatMessages" class="chat-messages" role="log"></div>
+
+    <div class="chat-suggestions" id="chatSuggestions"></div>
+
+    <form id="chatForm" class="chat-form" onsubmit="return false;">
+      <input id="chatInput" type="text" placeholder="Tulis pesan..." autocomplete="off">
+      <button class="btn btn-primary">Kirim</button>
+    </form>
+
+    <div class="chat-actions">
+      <button id="escalateWA" class="btn btn-ghost">Kirim ke Market (WhatsApp)</button>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer class="site-footer">
+    <a href= "ulasan/index2.html"> <button class="btn-tombol"> Ulasan </button> </a>
+    <a href= "reviews/index4.html"> <button class="btn-tombol"> Lihat Review </button> </a>
+    <div class="container">
+      <p>© <span id="year"></span>     Rumah Komputer _ SMK Al Amien</p>
+    </div>
+  </footer>
+
+
+  <script src="app.js"></script>
+  <script>
+// ========= DRAGGABLE ICON ==========
+(function () {
+  const toggle = document.getElementById("chatToggle");
+
+  let isDragging = false;
+  let offsetX = 0;
+  let offsetY = 0;
+
+  toggle.addEventListener("mousedown", startDrag);
+  toggle.addEventListener("touchstart", startDrag, { passive: false });
+
+  function startDrag(e) {
+    isDragging = true;
+
+    const rect = toggle.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+    offsetX = clientX - rect.left;
+    offsetY = clientY - rect.top;
+
+    document.addEventListener("mousemove", drag);
+    document.addEventListener("mouseup", stopDrag);
+
+    document.addEventListener("touchmove", drag, { passive: false });
+    document.addEventListener("touchend", stopDrag);
+  }
+
+  function drag(e) {
+    if (!isDragging) return;
+
+    e.preventDefault();
+
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+    let x = clientX - offsetX;
+    let y = clientY - offsetY;
+
+    // Batas layar
+    const maxX = window.innerWidth - toggle.offsetWidth;
+    const maxY = window.innerHeight - toggle.offsetHeight;
+
+    x = Math.max(0, Math.min(x, maxX));
+    y = Math.max(0, Math.min(y, maxY));
+
+    toggle.style.position = "fixed";
+    toggle.style.left = x + "px";
+    toggle.style.top = y + "px";
+  }
+
+  function stopDrag() {
+    isDragging = false;
+    document.removeEventListener("mousemove", drag);
+    document.removeEventListener("mouseup", stopDrag);
+
+    document.removeEventListener("touchmove", drag);
+    document.removeEventListener("touchend", stopDrag);
+  }
+})();
+</script>
+
+</body>
+</html>

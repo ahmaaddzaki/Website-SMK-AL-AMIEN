@@ -1,0 +1,333 @@
+header img {
+    max-height: 50px; /* Mengatur tinggi maksimum logo */
+    margin-right: 15px; /* Memberi jarak ke kanan */
+}
+
+/* styles.css */
+/* Root theme: light-saber purple, modern glassmorphism + neon glow */
+:root{
+  --bg: #271d33;
+  --card: rgba(255,255,255,0.03);
+  --muted: #9b90a6;
+  --accent: #8240c4; /* purple main */
+  --accent-2: ; /* deep purple */
+  --glow: 0 6px 30px rgba(181,107,255,0.18);
+  --glass: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  --radius: 12px;
+  font-family: Inter, ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background: radial-gradient(1000px 600px at 10% 10%, rgba(141,86,255,0.06), transparent),
+              radial-gradient(800px 400px at 90% 90%, rgba(138,43,226,0.04), transparent),
+              var(--bg);
+  color: #fcfafa;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+}
+
+/* Layout */
+.container{max-width:1100px;margin:0 auto;padding:24px}
+.site-header{padding:22px 0;border-bottom:1px solid rgba(255,255,255,0.03)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand h1{font-size:1.25rem;margin:0;font-weight:700;letter-spacing:0.5px}
+.brand h1 span{color:var(--accent)}
+.logo-glow {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+
+  /* Gambar logo */
+  background-image: url('gambar/apa.png');
+  background-size: cover;       /* gambar memenuhi kotak */
+  background-position: center;  /* posisi gambar center */
+  background-repeat: no-repeat; /* gambar tidak berulang */
+
+  /* Glow effect */
+  box-shadow: 
+    0 6px 30px rgba(181, 107, 255, 0.28),
+    inset 0 -8px 20px rgba(255, 255, 255, 0.04);
+}
+
+
+/* Search */
+.search-cart input[type="search"]{
+  width:320px;max-width:40vw;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.02);color:inherit;font-size:0.95rem;
+  outline:none;transition:box-shadow .22s;
+}
+.search-cart input[type="search"]:focus{box-shadow:var(--glow);border-color:var(--accent)}
+
+/* Controls */
+.controls{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:20px 0}
+.categories{display:flex;gap:10px;flex-wrap:wrap}
+.cat-btn{
+  padding:8px 12px;border-radius:999px;background:transparent;border:1px solid rgba(255,255,255,0.04);
+  color:var(--muted);cursor:pointer;font-weight:600;font-size:0.9rem;transition:all .18s;
+}
+.cat-btn.active{background:linear-gradient(90deg,var(--accent),var(--accent-2));box-shadow:var(--glow);color:#fff;transform:translateY(-2px)}
+
+/* Product Grid */
+.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card{
+  background:var(--card);backdrop-filter: blur(6px);border-radius:var(--radius);padding:16px;position:relative;
+  transition:transform .18s, box-shadow .18s;overflow:hidden;border:1px solid rgba(255,255,255,0.03);
+}
+.card:hover{transform:translateY(-6px);box-shadow:var(--glow);border-color:rgba(181,107,255,0.22)}
+.card .thumb{height:140px;border-radius:10px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.card .thumb img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 8px 18px rgba(138,43,226,0.12))}
+.card h3{margin:0 0 6px 0;font-size:1.05rem}
+.card .price{font-weight:700;color:var(--accent)}
+.card .meta{font-size:0.85rem;color:var(--muted);margin-bottom:12px}
+
+/* Buttons */
+.row{display:flex;gap:8px;align-items:center}
+.btn{
+  border:0;padding:8px 12px;border-radius:10px;font-weight:700;cursor:pointer;background:rgba(255,255,255,0.03);color:inherit;transition:transform .12s;
+}
+.btn:active{transform:translateY(1px)}
+.btn-primary{
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));box-shadow:var(--glow);color:#ffffff;border:1px solid rgba(255,255,255,0.06)
+}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)}
+
+/* Modal */
+.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:24px;z-index:90}
+.modal.show{display:flex}
+.modal-content{background:linear-gradient(180deg, rgb(0, 0, 0), rgba(75, 25, 90, 0.89));border-radius:14px;padding:20px;max-width:720px;width:100%;box-shadow:0 20px 50px rgba(181, 107, 255, 0.28);border:1px solid rgba(40, 228, 103, 0.06)}
+.modal-close{position:absolute;right:18px;top:12px;background:transparent;border:0;color:var(--muted);font-size:26px;cursor:pointer}
+
+/* Specs table */
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.specs .k{font-weight:600;color:var(--muted)}
+.specs .v{font-weight:700}
+
+/* Footer */
+.site-footer{padding:20px 0;border-top:1px solid rgba(211, 28, 28, 0.03);margin-top:30px;text-align:center;color:var(--muted);font-size:0.95rem}
+
+/* small screens */
+@media (max-width:640px){
+  .header-inner{flex-direction:column;align-items:flex-start;gap:12px}
+  .search-cart input{width:100%}
+  .specs{grid-template-columns:1fr}
+  .logo-glow{width:36px;height:36px}
+}
+/* ============================
+   Chat widget — final (rapi)
+   Toggle di kiri chat box, tidak menggeser layout,
+   animasi mulus, chat tidak memanjang ke atas.
+   ============================ */
+
+/* container: menampung toggle + box (toggle di kiri box) */
+.chat-widget{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:120;
+  font-family:inherit;
+  display:flex;
+  align-items:flex-end;
+  justify-content:flex-end;
+  /* ukuran kecil sehingga tombol tetap stabil */
+  width:auto;
+  height:auto;
+  gap:10px; /* jarak antara toggle dan box */
+  pointer-events:auto;
+}
+
+/* chat box: muncul di sebelah kanan toggle, absolute relatif ke viewport */
+.chat-box{
+  position:relative; /* keep inside container for simpler layout */
+  width:320px;
+  max-width:90vw;
+  background:linear-gradient(180deg, rgba(10,7,15,0.96), rgba(8,6,12,0.95));
+  border-radius:12px;
+  padding:0;
+  margin:0;
+  box-shadow:0 20px 50px rgba(0,0,0,0.6);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  border:1px solid rgba(181,107,255,0.06);
+  transform-origin:bottom right;
+  transform: translateY(12px) scale(.98);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .26s cubic-bezier(.2,.9,.2,1), opacity .22s ease;
+  max-height: 420px;
+}
+
+/* visible state: add .open via JS */
+.chat-box.open{
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* toggle (logo) — di kiri chat box */
+.chat-toggle{
+  width:56px;
+  height:56px;
+  border-radius:999px;
+  border:0;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:#fff;
+  font-size:22px;
+  box-shadow:var(--glow);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  z-index:130;
+  transition:transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.chat-toggle:active{ transform: scale(0.96); }
+
+/* keep header compact */
+.chat-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 12px;
+  border-bottom:1px solid rgba(255,255,255,0.03);
+  gap:8px;
+  background:linear-gradient(180deg, rgba(10,7,15,0.98), rgba(8,6,12,0.96));
+}
+.chat-header .small-muted{font-size:0.78rem;color:var(--muted)}
+.chat-close{background:transparent;border:0;color:var(--muted);font-size:20px;cursor:pointer;padding:6px}
+
+/* messages: fixed height + internal scroll */
+.chat-messages{
+  padding:10px;
+  max-height:5000px;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  scrollbar-width: thin;
+  background:transparent;
+}
+.chat-messages::-webkit-scrollbar{width:8px}
+.chat-messages::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.06);border-radius:6px}
+
+/* bubbles */
+.msg{
+  max-width:86%;
+  padding:8px 10px;
+  border-radius:10px;
+  font-size:0.9rem;
+  word-break:break-word;
+  line-height:1.25;
+}
+.msg.user{
+  align-self:flex-end;
+  background:rgba(255,255,255,0.04);
+  color:inherit;
+}
+.msg.bot{
+  align-self:flex-start;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:#fff;
+  box-shadow:0 6px 20px rgba(181,107,255,0.12);
+}
+
+/* suggestions area compact */
+.chat-suggestions{
+  display:flex;
+  gap:8px;
+  padding:8px 12px;
+  flex-wrap:wrap;
+  border-top:1px solid rgba(255,255,255,0.02);
+  background:transparent;
+}
+.sugg-btn{
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.04);
+  background:transparent;
+  color:var(--muted);
+  cursor:pointer;
+  font-weight:600;
+  white-space:nowrap;
+}
+
+/* input row pinned to bottom */
+.chat-form{
+  display:flex;
+  gap:8px;
+  padding:4px;
+  border-top:1px solid rgba(255,255,255,0.03);
+  background:linear-gradient(180deg, rgba(10,7,15,0.94), rgba(8,6,12,0.95));
+}
+.chat-form input{
+  flex:1;
+  padding:4px 8px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.04);
+  background:transparent;
+  color:inherit;
+  outline:none;
+}
+
+/* actions row (escalate button) */
+.chat-actions{
+  display:flex;
+  gap:8px;
+  padding:8px 12px;
+  border-top:1px solid rgba(255,255,255,0.03);
+  justify-content:flex-end;
+  background:transparent;
+}
+
+/* responsive: pada layar kecil, toggle dan box rapat */
+@media (max-width:420px){
+  .chat-widget{ right:12px; bottom:12px; gap:8px; }
+  .chat-box{ width:90vw; max-width:90vw; }
+  .chat-messages{ max-height:200px; }
+  .chat-toggle{ width:48px; height:48px; font-size:20px; }
+}
+.chat-toggle.draggable {
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.chat-toggle.draggable:active {
+  cursor: grabbing;
+}
+
+.btn-tombol{
+  display:inline-block;
+  padding:12px 20px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(181,107,255,0.4);
+  color:#ffffff;
+  border-radius:12px;
+  font-size:16px;
+  font-weight:600;
+  backdrop-filter:blur(6px);
+  text-decoration:none;
+  cursor:pointer;
+
+  box-shadow:0 0 12px rgba(181,107,255,0.25),
+             inset 0 0 18px rgba(181,107,255,0.15);
+
+  transition:0.25s ease;
+}
+
+.btn-tombol:hover{
+  border-color:#b56bff;
+  background:rgba(181,107,255,0.15);
+  box-shadow:0 0 18px rgba(181,107,255,0.45),
+             inset 0 0 22px rgba(181,107,255,0.25);
+  transform:translateY(-2px);
+}
+
+

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Review - Rumah Komputer - SMK Al Amien</title>
+
+  <!-- Favicon: .ico di root (paling kompatibel) -->
+  <link rel="icon" href="/favicon.ico">
+
+  <!-- PNG fallback / modern -->
+  <link rel="icon" type="image/png" sizes="32x32" href="smk-removebg-preview.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gambar/smk-apple-touch.png">
+
+  <!-- optional: older browsers -->
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <button onclick="history.back()" class="btn-kembali" aria-label="Kembali">⟵ Kembali</button>
+
+  <main class="container">
+    <section class="left">
+      <div class="card">
+        <h1 class="product-title">Rumah Komputer</h1>
+
+        <div class="video-wrap" aria-label="Video produk">
+          <div class="video-ratio" id="videoContainer" aria-live="polite">
+            <!-- Poster overlay (JS akan set background) -->
+            <div id="videoPoster" class="video-poster" role="button" tabindex="0" aria-label="Mainkan video">
+              <button id="playBtn" class="play-btn" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#fff"></path></svg>
+              </button>
+            </div>
+            <!-- iframe akan disuntikkan di sini oleh JS saat play -->
+          </div>
+        </div>
+
+        <div class="controls">
+          <input id="youtubeUrl" type="text" placeholder="Tempelkan URL YouTube atau ID (misal: dQw4w9WgXcQ)" aria-label="URL YouTube">
+          <button id="loadBtn">Muat</button>
+          <button id="autoplayToggle" aria-pressed="false" title="Toggle autoplay">Autoplay: Off</button>
+        </div>
+
+        <div id="thumbs" class="thumbnails" aria-label="Video lain">
+          <!-- JS akan render thumbnail list otomatis dari array videos -->
+        </div>
+
+        <div class="desc">
+          <p><strong>Selamat datang di RUMAH KOMPUTER — Solusi Teknologi Masa Kini!</strong></p>
+          <p>kami menyediakan berbagai kebutuhan komputer dengan kualitas terbaik, mulai dari laptop terbaru, PC rakitan performa tinggi, hingga aksesoris lengkap seperti mouse, keyboard, dan monitor.
+Semua produk kami dirancang untuk menunjang aktivitas kamu, baik untuk gaming, desain, kuliah, maupun pekerjaan profesional</code>.</p>
+        </div>
+      </div>
+    </section>
+
+    <aside class="right">
+      <div class="product-card">
+        <div class="price">Start Rp. 945.000-16.500.000</div>
+        <div class="stock">Stok: Tersedia</div>
+
+        <div class="buy-group">
+          <button onclick="history.back()" class="addCartBtn" aria-label="Kembali">Beli Sekarang</button>
+        </div>
+
+        <div class="meta">
+          <a href="/ulasan/index2.html">Lihat review pengguna</a>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

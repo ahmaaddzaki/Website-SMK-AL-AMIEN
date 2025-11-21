@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <!-- Ganti path favicon di sini jika perlu -->
+  <link rel="icon" href="../gambar/smk-removebg-preview.png" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ulasan - Rumah Komputer - SMK Al Amien</title>
+
+  <!-- Styles khusus halaman ulasan -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <section class="ulasan-container">
+
+    <!-- Tombol kembali (melayang, responsif) -->
+    <button onclick="history.back()" class="btn-kembali" aria-label="Kembali">⟵ Kembali</button>
+
+    <h2 class="title">Ulasan Pelanggan</h2>
+
+    <!-- List Ulasan -->
+    <div class="ulasan-list" aria-live="polite">
+
+      <article class="ulasan-card" role="article">
+        <div class="profile">
+          <div class="avatar">A</div>
+          <div>
+            <h4>Andi Saputra</h4>
+            <div class="stars" aria-hidden="true">★★★★★</div>
+          </div>
+        </div>
+        <p class="comment">Pelayanannya cepat dan barangnya original. Mantap!</p>
+        <time class="date" datetime="2025-11-15">15 Nov 2025</time>
+      </article>
+
+      <article class="ulasan-card" role="article">
+        <div class="profile">
+          <div class="avatar">R</div>
+          <div>
+            <h4>Rina Putri</h4>
+            <div class="stars" aria-hidden="true">★★★★☆</div>
+          </div>
+        </div>
+        <p class="comment">Toko terpercaya, harga murah. Pengiriman juga aman.</p>
+        <time class="date" datetime="2025-11-14">14 Nov 2025</time>
+      </article>
+
+    </div>
+
+    <!-- Form Tambah Ulasan -->
+    <form class="form-ulasan" onsubmit="event.preventDefault(); alert('Ulasan terkirim')">
+      <h3>Tulis Ulasan Anda</h3>
+      <input type="text" name="nama" placeholder="Nama Anda" required>
+      <textarea name="komentar" placeholder="Tulis ulasan..." rows="4" required></textarea>
+      <select name="rating" required>
+        <option value="" disabled selected>Pilih rating ⭐</option>
+        <option value="1">⭐</option>
+        <option value="2">⭐⭐</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="4">⭐⭐⭐⭐</option>
+        <option value="5">⭐⭐⭐⭐⭐</option>
+      </select>
+      <button type="submit">Kirim Ulasan</button>
+    </form>
+
+  </section>
+
+</body>
+</html>

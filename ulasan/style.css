@@ -1,0 +1,227 @@
+/* ---------- BASE / ROOT ---------- */
+:root{
+  --accent:#8a2be2;
+  --accent-soft:rgba(181,107,255,0.15);
+  --text:#ffffff;
+  --muted:#bbb;
+  --card-bg: rgba(255,255,255,0.06); /* background kartu (semi-transparan) */
+}
+
+/* pastikan body memenuhi layar supaya background terlihat */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #0b0620; /* fallback color */
+  color: var(--text);
+}
+
+/* ======= CONTOH 1: BACKGROUND FULL-PAGE (pada body) =======
+   Ganti "path/to/bg.jpg" dengan path gambarmu.
+   Jika kamu hanya mau warna, ganti background-image dengan background-color. */
+body {
+  background-image: url("gambar/bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  /* background-attachment: fixed;  optional, catatan: sering tidak bekerja di mobile */
+}
+
+/* overlay gelap di atas gambar supaya teks terbaca (opsional) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(rgba(8,6,12,0.45), rgba(8,6,12,0.45));
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------- ULASAN CONTAINER ---------- */
+.ulasan-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  position: relative;
+  z-index: 2;              /* harus di atas overlay body::before */
+  color: #8240c4;
+  /* jangan set background solid di sini jika mau lihat gambar body.
+     gunakan semi-transparan pada .ulasan-card untuk efek glass. */
+}
+
+/* ======= CONTOH 2: ALTERNATIF - background hanya untuk .ulasan-container (pakai salah satu contoh) =======
+   Jika kamu pilih contoh ini, hapus atau komentari bagian body { background-image: ... } di atas.
+*/
+/*
+.ulasan-container {
+  background-image: url("path/to/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* overlay gelap di dalam container */
+.ulasan-container::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.30);
+  z-index: 0;
+}
+ .ulasan-container > * { position: relative; z-index: 1; }
+*/
+
+/* ---------- STYLE ULASAN / KARTU ---------- */
+.title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #b66aff;
+}
+
+.ulasan-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* kartu tetap semi-transparan (glass) supaya background terlihat */
+.ulasan-card {
+  background: var(--card-bg);
+  padding: 18px;
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.2);
+  color: #fff;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.stars {
+  color: #ffdd55;
+  font-size: 18px;
+}
+
+.comment {
+  margin: 10px 0;
+  line-height: 1.5;
+  color: #eae6ff;
+}
+
+.date {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.form-ulasan {
+  margin-top: 35px;
+  background: rgba(255,255,255,0.04);
+  padding: 20px;
+  border-radius: 12px;
+  z-index: 2;
+}
+
+.form-ulasan h3 {
+  color: #c88aff;
+  margin-bottom: 15px;
+}
+
+.form-ulasan input,
+.form-ulasan textarea,
+.form-ulasan select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+
+.form-ulasan button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.form-ulasan button:hover {
+  background: #7621d1;
+}
+
+/* tombol kembali melayang */
+.btn-kembali{
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Diperkecil */
+  padding: 6px 12px;
+  background: var(--accent);
+  border: 1px solid rgba(181,107,255,0.4);
+  color: #ffffff;
+
+  border-radius: 8px;     /* lebih kecil */
+  font-size: 12px;        /* lebih kecil */
+  font-weight: 600;
+
+  backdrop-filter: blur(6px);
+  text-decoration: none;
+  cursor: pointer;
+
+  /* Shadow diperkecil */
+  box-shadow: 0 0 8px rgba(181,107,255,0.25),
+              inset 0 0 12px rgba(181,107,255,0.15);
+
+  -webkit-tap-highlight-color: transparent;
+  transition: 0.25s ease;
+}
+
+.btn-kembali:hover{
+  border-color: #b56bff;
+  background: rgba(181,107,255,0.18);
+
+  /* Hover glow diperkecil */
+  box-shadow: 0 0 12px rgba(181,107,255,0.45),
+              inset 0 0 16px rgba(181,107,255,0.25);
+
+  transform: translateY(-2px);
+}
+
+
+/* responsive */
+@media (max-width: 640px){
+  .ulasan-container { padding: 18px; margin: 20px; max-width: calc(100% - 40px); }
+  .title { font-size: 22px; }
+  .avatar { width:42px; height:42px; font-size:16px; }
+  .btn-kembali { top:12px; left:12px; padding:10px 12px; font-size:14px; }
+}
